@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kannan Manickam"]
-  s.date = "2013-08-19"
+  s.date = "2014-07-28"
   s.description = "\nThis is a simple and easy-to-use Jenkins Api client with features focused on\nautomating Job configuration programaticaly and so forth"
   s.email = ["arangamani.kannan@gmail.com"]
   s.executables = ["jenkinscli"]
@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
     "lib/jenkins_api_client/exceptions.rb",
     "lib/jenkins_api_client/job.rb",
     "lib/jenkins_api_client/node.rb",
+    "lib/jenkins_api_client/plugin_manager.rb",
     "lib/jenkins_api_client/system.rb",
     "lib/jenkins_api_client/user.rb",
     "lib/jenkins_api_client/version.rb",
@@ -48,20 +49,26 @@ Gem::Specification.new do |s|
     "spec/func_tests/client_spec.rb",
     "spec/func_tests/job_spec.rb",
     "spec/func_tests/node_spec.rb",
+    "spec/func_tests/plugin_spec.rb.pending",
     "spec/func_tests/spec_helper.rb",
     "spec/func_tests/system_spec.rb",
     "spec/func_tests/user_spec.rb",
     "spec/func_tests/view_spec.rb",
     "spec/unit_tests/build_queue_spec.rb",
     "spec/unit_tests/client_spec.rb",
+    "spec/unit_tests/fixtures/files/available_plugins.json",
     "spec/unit_tests/fixtures/files/computer_sample.xml",
+    "spec/unit_tests/fixtures/files/installed_plugins.json",
     "spec/unit_tests/fixtures/files/job_sample.xml",
+    "spec/unit_tests/fixtures/files/updatable_plugins.json",
     "spec/unit_tests/job_spec.rb",
     "spec/unit_tests/node_spec.rb",
+    "spec/unit_tests/plugin_spec.rb",
     "spec/unit_tests/spec_helper.rb",
     "spec/unit_tests/system_spec.rb",
     "spec/unit_tests/user_spec.rb",
     "spec/unit_tests/view_spec.rb",
+    "travis/hudson.model.UpdateCenter.xml",
     "travis/jenkins_config.xml",
     "travis/jenkins_config_with_crumb.xml",
     "travis/setup.sh",
@@ -71,14 +78,14 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "https://github.com/arangamani/jenkins_api_client"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.23"
+  s.rubygems_version = "2.0.14"
   s.summary = "Jenkins JSON API Client"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 3
+    s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<nokogiri>, ["~> 1.5.0"])
+      s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
       s.add_runtime_dependency(%q<thor>, [">= 0.16.0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
       s.add_runtime_dependency(%q<terminal-table>, [">= 1.4.0"])
@@ -87,9 +94,10 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_development_dependency(%q<rspec>, ["~> 2.13.0"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
+      s.add_development_dependency(%q<yard-thor>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
     else
-      s.add_dependency(%q<nokogiri>, ["~> 1.5.0"])
+      s.add_dependency(%q<nokogiri>, [">= 0"])
       s.add_dependency(%q<thor>, [">= 0.16.0"])
       s.add_dependency(%q<json>, [">= 0"])
       s.add_dependency(%q<terminal-table>, [">= 1.4.0"])
@@ -98,10 +106,11 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_dependency(%q<rspec>, ["~> 2.13.0"])
       s.add_dependency(%q<simplecov>, [">= 0"])
+      s.add_dependency(%q<yard-thor>, [">= 0"])
       s.add_dependency(%q<yard>, [">= 0"])
     end
   else
-    s.add_dependency(%q<nokogiri>, ["~> 1.5.0"])
+    s.add_dependency(%q<nokogiri>, [">= 0"])
     s.add_dependency(%q<thor>, [">= 0.16.0"])
     s.add_dependency(%q<json>, [">= 0"])
     s.add_dependency(%q<terminal-table>, [">= 1.4.0"])
@@ -110,6 +119,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 1.6.4"])
     s.add_dependency(%q<rspec>, ["~> 2.13.0"])
     s.add_dependency(%q<simplecov>, [">= 0"])
+    s.add_dependency(%q<yard-thor>, [">= 0"])
     s.add_dependency(%q<yard>, [">= 0"])
   end
 end
