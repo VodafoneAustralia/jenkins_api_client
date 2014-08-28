@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source "https://devops-util.prod.devops.aws.vodafone.com.au"
 
 gem "nokogiri"
 gem "thor", ">= 0.16.0"
